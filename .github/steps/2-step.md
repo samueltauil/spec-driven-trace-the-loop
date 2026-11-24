@@ -37,7 +37,7 @@ Each row of your worksheet answers one question:
    > npm run test:bdd -- --tags @003-US4-AS3
    > ```
 
-1. In `trace/document-triage.md`, fill in every row of the **Trace 2** table in your own words. For **Evidence**, copy the summary line Cucumber printed. In **Not proven by the evidence**, name what the spec's `THEN` line promises that the test does not check.
+1. In `trace/document-triage.md`, fill in every row of the **Trace 2** table in your own words. For **Intent**, the brief's prompt has one line about appeals. For **Evidence**, copy the summary line Cucumber printed. In **Not proven by the evidence**, name what the spec's `THEN` line promises that the test does not check.
 
 1. Save, commit with your own message, and push to `trace-triage` as you did in step 1.
 

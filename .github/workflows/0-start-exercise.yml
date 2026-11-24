@@ -26,7 +26,7 @@ jobs:
       issues: write # the toolkit opens the exercise issue
     uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.9.3
     with:
-      exercise-title: "Trace the Loop: From Intent to Evidence"
+      exercise-title: "Trace the Loop from Intent to Evidence"
       intro-message: "Follow one business rule from intent to passing evidence in a ready-made codespace, and find out what green tests do not prove."
 
   post_next_step_content:

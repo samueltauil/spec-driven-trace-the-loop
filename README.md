@@ -1,6 +1,6 @@
-# Trace the Loop: From Intent to Evidence
+# Trace the Loop from Intent to Evidence
 
-<img width="800" alt="Exercise 1 of 4 of the Spec-Driven Delivery workshop: Trace the Loop: From Intent to Evidence. Follow one rule from intent to passing evidence, and find what green tests do not prove. Tools: Codespaces, GitHub Copilot, OpenSpec and Gherkin. Focus of this exercise: Intent, Requirement, Scenario, Code and Evidence." src=".github/images/banner.png">
+<img width="800" alt="Exercise 1 of 4 of the Spec-Driven Delivery workshop: Trace the Loop from Intent to Evidence. Follow one rule from intent to passing evidence, and find what green tests do not prove. Tools: Codespaces, GitHub Copilot, OpenSpec and Gherkin. Focus of this exercise: Intent, Requirement, Scenario, Code and Evidence." src=".github/images/banner.png">
 
 _Follow one business rule from intent to passing evidence, and find out what green tests do not prove._
 
@@ -29,7 +29,7 @@ This is exercise 1 of 4 in the **Spec-Driven Delivery with OpenSpec, Gherkin and
 
 Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=samueltauil&template_name=spec-driven-trace-the-loop&owner=%40me&name=skills-spec-driven-trace-the-loop&description=Exercise:+Trace+the+Loop:+From+Intent+to+Evidence&visibility=public)
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=samueltauil&template_name=spec-driven-trace-the-loop&owner=%40me&name=skills-spec-driven-trace-the-loop&description=Exercise:+Trace+the+Loop+from+Intent+to+Evidence&visibility=public)
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>

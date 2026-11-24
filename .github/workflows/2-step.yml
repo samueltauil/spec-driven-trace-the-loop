@@ -93,7 +93,7 @@ jobs:
           section() { tr -d '\r' < trace/document-triage.md | awk -v h="## $1" 'index($0, h) == 1 {f = 1; next} /^## / {f = 0} f'; }
           value=$(section "Trace 2" | grep -iE '^\| *Not proven' | head -n 1 | cut -d '|' -f 3)
           echo "Not proven: $value"
-          echo "$value" | grep -qiE 'on-? ?call|notif|alert'
+          echo "$value" | grep -qiE 'on-? ?call|notif'
 
       - name: Update comment - step results
         uses: GrantBirki/comment@v2.1.1

@@ -23,13 +23,15 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
    > For each one, quote its THEN line.
    > ```
 
-   > 💡 **Tip:** If Copilot answers without reading the files, add them to the chat: type `#` in the chat box and pick each file.
+   > 💡 **Tip:** If Copilot answers without reading the files, add them to the chat: type `#` in the chat box and pick each file. Each file you add appears above your prompt.
+   >
+   > <img width="350" alt="The Copilot Chat box with three files added as context, shown above the prompt field" src="../images/copilot-chat-context.png">
 
 1. Pick one ID from the list and verify it yourself: search the repository for it (`Ctrl+Shift+F` or `Cmd+Shift+F`). It should appear only in the spec.
 
 1. Open `openspec/changes/add-inbound-document-triage/design.md` and read the first decision. It lists what the first slice receives as input instead of doing itself. Each of those is a capability someone must confirm exists.
 
-1. In `trace/document-triage.md`, fill in the **Gaps** section:
+1. In `trace/document-triage.md`, fill in the **Gaps** section. Write each answer after its label's colon, on the same line:
 
    - **Scenario with no automated evidence:** the ID you verified.
    - **Why it matters:** one sentence on the risk if nobody checks it.
@@ -66,9 +68,11 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- **Mona says the gap is not valid:** Choose a `#### Scenario:` ID from the spec that does not appear in `features/document-triage.feature` or in a unit test name. Fix the worksheet, then commit and push again. Mona checks the pull request again on every push.
+- **Mona says the Gaps section doesn't name a scenario with no automated evidence:** Choose a `#### Scenario:` ID from the spec that does not appear in `features/document-triage.feature` or in a unit test name. Copy it exactly as the spec writes it, with capital letters. Fix the worksheet, then commit and push again. Mona checks the pull request again on every push.
 
-- **Mona says a line is empty:** Write the capability and the confirming role on the same line as their labels.
+- **Mona says the capability or the role is missing:** Write each one after its label's colon, on the same line. Describe the capability in a short sentence, not a single word.
+
+- **You already opened a pull request from `trace-triage`:** Use it. Push a new commit to it, and Mona checks the pull request again.
 
 - **Mona did not respond:** Check that the pull request targets `main`. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
 

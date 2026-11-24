@@ -1,6 +1,6 @@
 ## Step 1: Follow one behavior from intent to evidence
 
-<img width="800" alt="Exercise 1 of 4 of the Spec-Driven Delivery workshop: Trace the Loop: From Intent to Evidence. Follow one rule from intent to passing evidence, and find what green tests do not prove. Tools: Codespaces, GitHub Copilot, OpenSpec and Gherkin. Focus of this exercise: Intent, Requirement, Scenario, Code and Evidence." src="../images/banner.png">
+<img width="800" alt="Exercise 1 of 4 of the Spec-Driven Delivery workshop: Trace the Loop from Intent to Evidence. Follow one rule from intent to passing evidence, and find what green tests do not prove. Tools: Codespaces, GitHub Copilot, OpenSpec and Gherkin. Focus of this exercise: Intent, Requirement, Scenario, Code and Evidence." src="../images/banner.png">
 
 Welcome to the Contoso Health Plan delivery team, @{{ login }}! :wave: Your team is building inbound document triage: faxes and scans must reach the right queue fast, attach to a member only when certain, and go to people whenever the system is unsure. Before the next planning session, your lead asks you to show how one business rule travels from intent to evidence.
 
@@ -41,6 +41,8 @@ Your copy of this repository comes with a ready-made [codespace](https://docs.gi
    > git switch -c trace-triage
    > ```
 
+   The terminal shows `Switched to a new branch 'trace-triage'`.
+
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
@@ -74,7 +76,7 @@ You'll follow scenario `003-US1-AS1`, the rule that decides whether a document i
    > npm run test:bdd -- --tags @003-US1-AS1
    > ```
 
-1. Check the summary at the end of the output: `3 scenarios (3 passed)`. Each row of the **Examples** table runs as its own scenario.
+1. Near the end of the output, find `3 scenarios (3 passed)`. Each row of the **Examples** table runs as its own scenario.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
@@ -82,6 +84,8 @@ You'll follow scenario `003-US1-AS1`, the rule that decides whether a document i
 - **`cucumber-js: not found`:** The setup did not finish. Run `npm ci`, then run the command again.
 
 - **`0 scenarios`:** Check the tag. It starts with `@` and uses capital letters: `@003-US1-AS1`.
+
+- **An `ENOENT` error that mentions `@003-US1-AS1`:** Keep the `--` before `--tags`. It passes the tag to Cucumber instead of npm.
 
 </details>
 
@@ -119,6 +123,8 @@ You'll follow scenario `003-US1-AS1`, the rule that decides whether a document i
 <summary>Having trouble? 🤷</summary><br/>
 
 - **`git push` asks for credentials or is rejected:** Make sure the codespace belongs to your copy, `{{ full_repo_name }}`. Run `git remote -v` to check.
+
+- **`git commit` says `nothing to commit`:** Save the worksheet with `Ctrl+S` (`Cmd+S` on Mac), then run the three commands again.
 
 - **Mona did not respond:** Check that you pushed to the `trace-triage` branch and that `trace/document-triage.md` changed. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
 
