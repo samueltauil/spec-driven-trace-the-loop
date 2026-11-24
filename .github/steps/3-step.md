@@ -6,6 +6,8 @@ Great catch, @{{ login }}! You found a promise the evidence does not keep. One q
 
 A spec can keep acceptance scenarios that no automated check covers yet, and every spec rests on **capabilities** it assumes exist: a field, a lookup, an interface or a queue. [Copilot Chat](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide) is good at comparing files to find candidate gaps, but it can be wrong, and only a named person can confirm that a capability exists. Until someone does, the capability blocks the **Ready to build** decision. The rule for the whole workshop: AI drafts, humans decide.
 
+<img width="800" alt="Where gaps hide. Five spec scenarios, A to E. Four link to a passing feature scenario or unit test. Scenario D has no automated evidence and is marked as a gap. Below, a note on assumed capabilities: every spec relies on things it expects to exist, such as a field, a lookup, an interface or a queue, and a named person confirms each one before Ready to build." src="../images/evidence-gap.png">
+
 ### ⌨️ Activity 1: Find a gap with Copilot
 
 1. In your codespace, open Copilot Chat: select the chat icon at the top of the editor, or press `Ctrl+Alt+I` (`⌃⌘I` on Mac).
@@ -41,7 +43,7 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 
 - **Copilot edited a file:** Undo it with `git restore <file>`, then ask again.
 
-- **No chat icon:** Check that the GitHub Copilot Chat extension is installed and that you are signed in to GitHub in the codespace.
+- **No chat icon, or Copilot asks you to sign in:** Select the Copilot icon in the Status Bar at the bottom of the editor and sign in with your GitHub account. The GitHub Copilot Chat extension is already installed in this codespace.
 
 </details>
 
@@ -52,6 +54,8 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 1. In your browser, go to your repository, `{{ full_repo_name }}`. Open the **Pull requests** tab and [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) with `main` as the base branch and `trace-triage` as the compare branch.
 
    > 💡 **Tip:** If a **Compare & pull request** banner appears for `trace-triage`, you can use it instead.
+
+   <img width="600" alt="A repository page with a yellow banner about a branch with recent pushes and a green Compare and pull request button. The branch name in the screenshot is an example." src="../images/compare-pull-request.png">
 
 1. Give it a short title, such as `Trace inbound document triage`, and create the pull request.
 

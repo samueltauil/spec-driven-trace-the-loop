@@ -1,10 +1,14 @@
 ## Step 1: Follow one behavior from intent to evidence
 
+<img width="800" alt="Exercise 1 of the Spec-Driven Delivery workshop: Trace the Loop. Follow one business rule from intent to evidence. The loop runs from Intent to Requirement, Scenario, Code and Evidence." src="../images/banner.png">
+
 Welcome to the Contoso Health Plan delivery team, @{{ login }}! :wave: Your team is building inbound document triage: faxes and scans must reach the right queue fast, attach to a member only when certain, and go to people whenever the system is unsure. Before the next planning session, your lead asks you to show how one business rule travels from intent to evidence.
 
 ### 📖 Theory: The spec-driven loop
 
 In spec-driven delivery, every behavior leaves a trail. An **intent brief** explains why the change matters. An [OpenSpec](https://github.com/Fission-AI/OpenSpec) **change** holds the proposal and the **requirements** (rules written with MUST or SHALL), each with acceptance **scenarios**. A [Gherkin](https://cucumber.io/docs/gherkin/reference/) **feature** file turns scenarios into examples a machine can run, and the **code** and **tests** produce the evidence. Shared IDs link the trail: `003-FR-004` is a requirement and `003-US1-AS1` is an acceptance scenario.
+
+<img width="800" alt="The spec-driven loop: five linked steps. Intent, why the change matters. Requirement, the rule written with MUST or SHALL. Scenario, an example someone can check. Feature and code, examples that run and the behavior. Evidence, what ran and what passed. Shared IDs such as 003-FR-004 for a requirement and 003-US1-AS1 for an acceptance scenario link them." src="../images/spec-loop.png">
 
 | Link | Where it lives in this repository |
 | --- | --- |
@@ -23,11 +27,13 @@ Your copy of this repository comes with a ready-made [codespace](https://docs.gi
 
 1. On the codespace page, check that the repository is `{{ full_repo_name }}`, your copy, and not the original exercise. Then create the codespace.
 
-1. Wait for the setup to finish. The first start takes about 2 to 4 minutes.
+1. Wait for the editor to open. The first start takes about 2 to 4 minutes, because the codespace installs everything this exercise needs before it opens.
 
-   > ⏳ **Wait:** A terminal at the bottom of the editor runs `npm ci`. You are ready when it reports that packages were added.
+   > ⏳ **Wait:** You are ready when the bottom-left corner of the editor shows **Codespaces** followed by your codespace's name.
 
-1. In the terminal, create a branch for your work.
+   <img width="400" alt="The bottom-left corner of the editor's Status Bar showing Codespaces followed by a generated codespace name" src="../images/codespaces-status.png">
+
+1. Open a terminal with `` Ctrl+` `` (`` ⌃` `` on Mac), or from the menu (☰) at the top left with **Terminal** > **New Terminal**. Then create a branch for your work.
 
    > ![Terminal command](https://img.shields.io/badge/Terminal-text?style=flat&logo=gnometerminal&labelColor=1f2328&color=eee)
    >
@@ -38,11 +44,13 @@ Your copy of this repository comes with a ready-made [codespace](https://docs.gi
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- **No terminal is visible:** Open one from the editor menu with **Terminal** > **New Terminal**, or press `` Ctrl+` `` (`` ⌃` `` on Mac).
+- **No terminal is visible:** In the panel at the bottom of the editor, select the **TERMINAL** tab. If there is no panel, press `` Ctrl+` `` (`` ⌃` `` on Mac).
+
+  <img width="460" alt="The editor's bottom panel with the TERMINAL tab selected, next to PROBLEMS, OUTPUT, DEBUG CONSOLE and PORTS" src="../images/terminal-tab.png">
 
 - **The codespace opened the original exercise:** Close that tab and use the button above, which points to your copy. You can also start one from your repository page: **Code** > **Codespaces** > **Create codespace on main**.
 
-- **`npm ci` failed or never ran:** Run `npm ci` yourself in the terminal.
+- **A command says a package is missing:** The setup did not finish. Run `npm ci` in the terminal, then try again.
 
 </details>
 

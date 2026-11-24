@@ -1,14 +1,19 @@
 {
   "name": "Spec-driven delivery",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:5-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
   "containerEnv": {
     "OPENSPEC_TELEMETRY": "0"
   },
-  "postCreateCommand": "npm ci",
+  "updateContentCommand": "npm ci",
   "customizations": {
+    "codespaces": {
+      "openFiles": ["trace/document-triage.md"]
+    },
     "vscode": {
       "extensions": [
-        "GitHub.copilot",
         "GitHub.copilot-chat",
         "CucumberOpen.cucumber-official"
       ]

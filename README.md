@@ -1,5 +1,7 @@
 # Trace the Loop: From Intent to Evidence
 
+<img width="800" alt="Exercise 1 of the Spec-Driven Delivery workshop: Trace the Loop. Follow one business rule from intent to evidence. The loop runs from Intent to Requirement, Scenario, Code and Evidence." src=".github/images/banner.png">
+
 _Follow one business rule from intent to passing evidence, and find out what green tests do not prove._
 
 ## Welcome
@@ -20,6 +22,8 @@ In this exercise, you will:
 1. Record a scenario with no automated evidence and an unconfirmed capability, then open a pull request.
 
 This is exercise 1 of 4 in the **Spec-Driven Delivery with OpenSpec, Gherkin and GitHub Copilot** workshop. All organizations, people and data in it are fictional.
+
+<img width="800" alt="Workshop map: four exercises in a row. Exercise 1, Trace the loop, is highlighted as You are here, followed by Find the missing rules, Deliver a behavior and Draft your first spec." src=".github/images/workshop-map.png">
 
 ### How to start this exercise
 

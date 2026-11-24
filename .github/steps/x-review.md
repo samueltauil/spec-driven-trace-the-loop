@@ -43,6 +43,8 @@ Pick one acceptance criterion in your team's backlog. Name the automated check t
 
 ### What's next?
 
+<img width="800" alt="Workshop map: four exercises in a row. Exercise 1, Trace the loop, is highlighted as You are here. Next come Find the missing rules, Deliver a behavior and Draft your first spec." src="../images/workshop-map.png">
+
 - Continue the workshop with exercise 2, **Find the Missing Rules Before You Build**, where you catch missing rules before anyone writes code.
 - Read the [Gherkin reference](https://cucumber.io/docs/gherkin/reference/) to learn how scenarios, outlines and tags work.
 - Explore more [GitHub Skills exercises](https://learn.github.com/skills).

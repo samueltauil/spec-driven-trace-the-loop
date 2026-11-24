@@ -6,6 +6,10 @@ Nice trace, @{{ login }}! Your lead has a sharper question now: "Our weekend app
 
 A passing scenario proves only what its `Then` steps assert. The spec's `THEN` line can promise more than the Gherkin `Then` step checks, and the feature's requirement tag shows which rule the example was written to demonstrate. When they differ, record the unproven part in plain words. Don't edit tags or scenarios to make the trace look complete: a conflict between artifacts is a finding for a person to resolve.
 
+Each row of your worksheet answers one question:
+
+<img width="592" alt="One trace, seven questions. Intent: why does the team want this? Requirement: which rule must hold? Scenario: which example shows the rule? Feature: which executable example runs it? Code: where does the behavior live? Evidence: what ran, and did it pass? Not proven by the evidence: what do the checks not assert?" src="../images/trace-chain.png">
+
 ### ⌨️ Activity: Trace the weekend appeal rule
 
 1. Before you scroll up, try to name from memory the places you visited in step 1, in order. Then check yourself.
