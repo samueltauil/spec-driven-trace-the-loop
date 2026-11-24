@@ -1,0 +1,177 @@
+name: Step 2
+
+on:
+  # Manual re-run for facilitators and testing.
+  workflow_dispatch:
+  # The learner pushes the worksheet to a branch that does not exist in the template.
+  push:
+    branches:
+      - trace-triage
+    paths:
+      - trace/document-triage.md
+
+# Least privilege: no default permissions; each job asks only for what it uses.
+permissions: {}
+
+# A quick second push cancels the run it supersedes instead of grading twice.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  STEP_3_FILE: ".github/steps/3-step.md"
+
+jobs:
+  find_exercise:
+    name: Find Exercise Issue
+    permissions:
+      issues: read # locate the exercise issue
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.9.3
+
+  check_step_work:
+    name: Check step work
+    runs-on: ubuntu-latest
+    needs: [find_exercise]
+    permissions:
+      contents: read # read the learner's files
+      issues: write # update Mona's feedback comment
+      # No actions: write. A learner-triggered job must not enable or disable workflows.
+    env:
+      ISSUE_REPOSITORY: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get response templates
+        uses: actions/checkout@v6
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.9.3
+
+      - name: Find last comment
+        id: find-last-comment
+        uses: peter-evans/find-comment@v4
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-author: github-actions[bot] # never target the learner's own comment
+          direction: last
+
+      - name: Update comment - checking work
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
+          file: exercise-toolkit/markdown-templates/step-feedback/checking-work.md
+          edit-mode: replace
+
+      # START: Check practical exercise
+      # Each check reads only the Trace 2 section of the worksheet.
+
+      - name: Check Trace 2 follows scenario 003-US4-AS3
+        id: check-scenario
+        continue-on-error: true
+        run: |
+          section() { tr -d '\r' < trace/document-triage.md | awk -v h="## $1" 'index($0, h) == 1 {f = 1; next} /^## / {f = 0} f'; }
+          section "Trace 2" | grep -q '003-US4-AS3'
+
+      - name: Check Trace 2 records the passing evidence
+        id: check-evidence
+        continue-on-error: true
+        run: |
+          section() { tr -d '\r' < trace/document-triage.md | awk -v h="## $1" 'index($0, h) == 1 {f = 1; next} /^## / {f = 0} f'; }
+          section "Trace 2" | grep -iE '^\| *Evidence *\|' | grep -qi 'passed'
+
+      - name: Check Trace 2 names the unchecked notification
+        id: check-not-proven
+        continue-on-error: true
+        run: |
+          section() { tr -d '\r' < trace/document-triage.md | awk -v h="## $1" 'index($0, h) == 1 {f = 1; next} /^## / {f = 0} f'; }
+          value=$(section "Trace 2" | grep -iE '^\| *Not proven' | head -n 1 | cut -d '|' -f 3)
+          echo "Not proven: $value"
+          echo "$value" | grep -qiE 'on-? ?call|notif|alert'
+
+      - name: Update comment - step results
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
+          edit-mode: replace
+          file: exercise-toolkit/markdown-templates/step-feedback/step-results-table.md
+          # Tips render only when a check failed. Keep tip text free of single quotes.
+          vars: |
+            step_number: 2
+            results_table:
+              - description: "Trace 2 follows scenario 003-US4-AS3"
+                passed: ${{ steps.check-scenario.outcome == 'success' }}
+              - description: "The Evidence row of Trace 2 records the passing test summary"
+                passed: ${{ steps.check-evidence.outcome == 'success' }}
+              - description: "The Not proven by the evidence row of Trace 2 names the part of the spec THEN line that the test does not check"
+                passed: ${{ steps.check-not-proven.outcome == 'success' }}
+            tips: ${{ contains(steps.*.outcome, 'failure') && '["Write the scenario ID 003-US4-AS3 in the Trace 2 table, under the Trace 2 heading.", "Put the spec THEN line for 003-US4-AS3 next to the Gherkin Then step. The part with no matching check belongs in the Not proven row.", "Save, commit and push to the trace-triage branch again."]' || '[]' }}
+      # END: Check practical exercise
+
+      - name: Fail job if not all checks passed
+        if: contains(steps.*.outcome, 'failure')
+        run: exit 1
+
+  post_next_step_content:
+    name: Post next step content
+    needs: [find_exercise, check_step_work] # grading must gate progress
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # checkout step content
+      actions: write # disable this step and enable the next one
+      issues: write # post step content and progress comments
+    env:
+      ISSUE_REPOSITORY: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get response templates
+        uses: actions/checkout@v6
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.9.3
+
+      - name: Create comment - step finished
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
+          vars: |
+            next_step_number: 3
+
+      - name: Create comment - add step content
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          file: ${{ env.STEP_3_FILE }}
+          vars: |
+            login: ${{ github.actor }}
+            full_repo_name: ${{ github.repository }}
+
+      - name: Create comment - watching for progress
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
+
+      - name: Disable current workflow and enable next one
+        run: |
+          gh workflow disable "${{ github.workflow }}"
+          gh workflow enable "Step 3"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

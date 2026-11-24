@@ -1,0 +1,69 @@
+## Step 3: Record a gap and open a pull request
+
+Great catch, @{{ login }}! You found a promise the evidence does not keep. One question remains before planning: what else is still unproven or unconfirmed? You'll answer it with Copilot's help, check the answer yourself, and share your trace in a pull request.
+
+### 📖 Theory: Gaps and unconfirmed capabilities
+
+A spec can keep acceptance scenarios that no automated check covers yet, and every spec rests on **capabilities** it assumes exist: a field, a lookup, an interface or a queue. [Copilot Chat](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide) is good at comparing files to find candidate gaps, but it can be wrong, and only a named person can confirm that a capability exists. Until someone does, the capability blocks the **Ready to build** decision. The rule for the whole workshop: AI drafts, humans decide.
+
+### ⌨️ Activity 1: Find a gap with Copilot
+
+1. In your codespace, open Copilot Chat: select the chat icon at the top of the editor, or press `Ctrl+Alt+I` (`⌃⌘I` on Mac).
+
+1. Ask Copilot to compare the spec with the evidence. The first sentence keeps it read-only.
+
+   > ![Copilot prompt](https://img.shields.io/badge/-Prompt-text?style=social&logo=github%20copilot)
+   >
+   > ```prompt
+   > Do not edit any files. List every "#### Scenario:" ID in
+   > openspec/changes/add-inbound-document-triage/specs/inbound-document-triage/spec.md
+   > that does not appear in features/document-triage.feature or tests/document-triage.test.js.
+   > For each one, quote its THEN line.
+   > ```
+
+   > 💡 **Tip:** If Copilot answers without reading the files, add them to the chat: type `#` in the chat box and pick each file.
+
+1. Pick one ID from the list and verify it yourself: search the repository for it (`Ctrl+Shift+F` or `Cmd+Shift+F`). It should appear only in the spec.
+
+1. Open `openspec/changes/add-inbound-document-triage/design.md` and read the first decision. It lists what the first slice receives as input instead of doing itself. Each of those is a capability someone must confirm exists.
+
+1. In `trace/document-triage.md`, fill in the **Gaps** section:
+
+   - **Scenario with no automated evidence:** the ID you verified.
+   - **Why it matters:** one sentence on the risk if nobody checks it.
+   - **Unconfirmed capability:** a capability the spec assumes exists, in a short sentence.
+   - **Who could confirm it:** a role, such as "Engineering lead, Operations Platform". Use roles, not real names.
+
+<details>
+<summary>Having trouble? 🤷</summary><br/>
+
+- **Copilot listed `003-US2-AS2`:** Check it yourself. The unit test named `003-US2-AS1/2/3` covers AS1, AS2 and AS3, so Copilot missed it. Verifying output like this is exactly your job.
+
+- **Copilot edited a file:** Undo it with `git restore <file>`, then ask again.
+
+- **No chat icon:** Check that the GitHub Copilot Chat extension is installed and that you are signed in to GitHub in the codespace.
+
+</details>
+
+### ⌨️ Activity 2: Open a pull request
+
+1. Save, commit with your own message, and push to `trace-triage`.
+
+1. In your browser, go to your repository, `{{ full_repo_name }}`. Open the **Pull requests** tab and [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) with `main` as the base branch and `trace-triage` as the compare branch.
+
+   > 💡 **Tip:** If a **Compare & pull request** banner appears for `trace-triage`, you can use it instead.
+
+1. Give it a short title, such as `Trace inbound document triage`, and create the pull request.
+
+1. Wait a moment for Mona to check your work, provide feedback, and share the next lesson.
+
+<details>
+<summary>Having trouble? 🤷</summary><br/>
+
+- **Mona says the gap is not valid:** Choose a `#### Scenario:` ID from the spec that does not appear in `features/document-triage.feature` or in a unit test name. Fix the worksheet, then commit and push again. Mona checks the pull request again on every push.
+
+- **Mona says a line is empty:** Write the capability and the confirming role on the same line as their labels.
+
+- **Mona did not respond:** Check that the pull request targets `main`. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
+
+</details>

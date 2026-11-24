@@ -1,0 +1,190 @@
+name: Step 3 # Last step of the exercise
+
+on:
+  # Manual re-run for facilitators and testing.
+  workflow_dispatch:
+  # The learner opens a pull request; every later push to it is checked again.
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+# Least privilege: no default permissions; each job asks only for what it uses.
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  REVIEW_FILE: ".github/steps/x-review.md"
+
+jobs:
+  find_exercise:
+    name: Find Exercise Issue
+    permissions:
+      issues: read # locate the exercise issue
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.9.3
+
+  check_step_work:
+    name: Check step work
+    runs-on: ubuntu-latest
+    needs: [find_exercise]
+    permissions:
+      contents: read # read the learner's files
+      issues: write # update Mona's feedback comment
+      # No actions: write. A learner-triggered job must not enable or disable workflows.
+    env:
+      ISSUE_REPOSITORY: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get response templates
+        uses: actions/checkout@v6
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.9.3
+
+      - name: Find last comment
+        id: find-last-comment
+        uses: peter-evans/find-comment@v4
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-author: github-actions[bot] # never target the learner's own comment
+          direction: last
+
+      - name: Update comment - checking work
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
+          file: exercise-toolkit/markdown-templates/step-feedback/checking-work.md
+          edit-mode: replace
+
+      # START: Check practical exercise
+      # Each check reads one labeled line of the Gaps section of the worksheet.
+
+      - name: Check the gap is a spec scenario with no automated evidence
+        id: check-gap
+        continue-on-error: true
+        run: |
+          label() { tr -d '\r' < trace/document-triage.md | awk 'index($0, "## Gaps") == 1 {f = 1; next} /^## / {f = 0} f' | grep -i "$1:" | head -n 1 | sed -E 's/^[^:]*:\**[[:space:]]*//; s/[[:space:]]+$//'; }
+          spec=openspec/changes/add-inbound-document-triage/specs/inbound-document-triage/spec.md
+          automated=" 003-US1-AS1 003-US2-AS1 003-US2-AS2 003-US2-AS3 003-US4-AS3 003-US5-AS2 "
+          value=$(label "Scenario with no automated evidence")
+          echo "Gap: $value"
+          found=false
+          for id in $(echo "$value" | grep -oE '003-(US[0-9]+-AS[0-9]+|FR-[0-9]{3}-review)'); do
+            case "$automated" in *" $id "*) echo "$id has automated evidence"; continue ;; esac
+            if tr -d '\r' < "$spec" | grep -qE "^#### Scenario: $id[[:space:]]*$"; then found=true; fi
+          done
+          [ "$found" = true ]
+
+      - name: Check an unconfirmed capability is recorded
+        id: check-capability
+        continue-on-error: true
+        run: |
+          label() { tr -d '\r' < trace/document-triage.md | awk 'index($0, "## Gaps") == 1 {f = 1; next} /^## / {f = 0} f' | grep -i "$1:" | head -n 1 | sed -E 's/^[^:]*:\**[[:space:]]*//; s/[[:space:]]+$//'; }
+          value=$(label "Unconfirmed capability")
+          echo "Capability: $value"
+          [ "${#value}" -ge 10 ]
+
+      - name: Check a role is named to confirm it
+        id: check-confirmer
+        continue-on-error: true
+        run: |
+          label() { tr -d '\r' < trace/document-triage.md | awk 'index($0, "## Gaps") == 1 {f = 1; next} /^## / {f = 0} f' | grep -i "$1:" | head -n 1 | sed -E 's/^[^:]*:\**[[:space:]]*//; s/[[:space:]]+$//'; }
+          value=$(label "Who could confirm it")
+          echo "Confirmer: $value"
+          [ "${#value}" -ge 3 ]
+
+      - name: Update comment - step results
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
+          edit-mode: replace
+          file: exercise-toolkit/markdown-templates/step-feedback/step-results-table.md
+          # Tips render only when a check failed. Keep tip text free of single quotes.
+          vars: |
+            step_number: 3
+            results_table:
+              - description: "The Gaps section names a spec scenario ID with no automated evidence"
+                passed: ${{ steps.check-gap.outcome == 'success' }}
+              - description: "The Gaps section records an unconfirmed capability"
+                passed: ${{ steps.check-capability.outcome == 'success' }}
+              - description: "The Gaps section names a role who could confirm the capability"
+                passed: ${{ steps.check-confirmer.outcome == 'success' }}
+            tips: ${{ contains(steps.*.outcome, 'failure') && '["Copy a scenario ID exactly as it appears after #### Scenario: in the spec, and check that it does not appear in the feature file or a unit test name.", "Write each answer on the same line as its label in the Gaps section.", "Commit and push to trace-triage again. Mona checks the pull request on every push."]' || '[]' }}
+
+      # END: Check practical exercise
+
+      - name: Fail job if not all checks passed
+        if: contains(steps.*.outcome, 'failure')
+        run: exit 1
+
+  post_review_content:
+    name: Post review content
+    needs: [find_exercise, check_step_work] # grading must gate the review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # checkout review content
+      actions: write # disable this final workflow
+      issues: write # post the review comments
+    env:
+      ISSUE_REPOSITORY: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Get response templates
+        uses: actions/checkout@v6
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.9.3
+
+      - name: Create comment - step finished - final review next
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          file: exercise-toolkit/markdown-templates/step-feedback/lesson-review.md
+
+      - name: Create comment - add review content
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          file: ${{ env.REVIEW_FILE }}
+          vars: |
+            login: ${{ github.actor }}
+            full_repo_name: ${{ github.repository }}
+
+      - name: Disable current workflow
+        run: gh workflow disable "${{ github.workflow }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  finish_exercise:
+    name: Finish Exercise
+    needs: [find_exercise, post_review_content]
+    permissions:
+      contents: write # the toolkit commits the congratulations README
+      issues: write # the toolkit comments on and closes the exercise issue
+    uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.9.3
+    with:
+      issue-url: ${{ needs.find_exercise.outputs.issue-url }}
+      exercise-title: "Trace the Loop: From Intent to Evidence"

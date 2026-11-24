@@ -1,0 +1,17 @@
+{
+  "name": "Spec-driven delivery",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "containerEnv": {
+    "OPENSPEC_TELEMETRY": "0"
+  },
+  "postCreateCommand": "npm ci",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "CucumberOpen.cucumber-official"
+      ]
+    }
+  }
+}
