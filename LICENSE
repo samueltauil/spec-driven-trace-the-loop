@@ -23,6 +23,6 @@ SOFTWARE.
 ---
 
 Third-party images: the screenshots codespaces-status.png, terminal-tab.png and
-compare-pull-request.png in
-.github/images are Copyright (c) GitHub, Inc. and are used under the MIT License.
-The diagrams use Primer Octicons, Copyright (c) GitHub, Inc., MIT License.
+compare-pull-request.png in .github/images are Copyright (c) GitHub, Inc. and
+are used under the MIT License. The diagrams use Primer Octicons, Copyright (c)
+GitHub, Inc., MIT License.

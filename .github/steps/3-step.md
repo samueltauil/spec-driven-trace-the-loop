@@ -57,11 +57,11 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 
    > 💡 **Tip:** If a **Compare & pull request** banner appears for `trace-triage`, you can use it instead.
 
-   <img width="600" alt="A repository page with a yellow banner about a branch with recent pushes and a green Compare and pull request button. The branch name in the screenshot is an example." src="../images/compare-pull-request.png">
+   <img width="600" alt="A repository page with a yellow banner about a branch with recent pushes and a green Compare and pull request button. The branch name in the screenshot is an example; yours is trace-triage." src="../images/compare-pull-request.png">
 
 1. Give it a short title, such as `Trace inbound document triage`, and create the pull request.
 
-1. Wait a moment for Mona to check your work, provide feedback, and share the next lesson.
+1. Go back to the exercise issue. Wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
