@@ -10,7 +10,7 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 
 ### ⌨️ Activity 1: Find a gap with Copilot
 
-1. In your codespace, open Copilot Chat: select the chat icon at the top of the editor, or press `Ctrl+Alt+I` (`⌃⌘I` on Mac).
+1. In your codespace, open Copilot Chat: select the chat icon at the top of the editor, or press `Ctrl+Alt+I` (`Ctrl+Cmd+I` on Mac).
 
 1. Ask Copilot to compare the spec with the evidence. The first sentence keeps it read-only.
 
@@ -27,7 +27,7 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
    >
    > <img width="350" alt="The Copilot Chat box with three files added as context, shown above the prompt field" src="../images/copilot-chat-context.png">
 
-1. Pick one ID from the list and verify it yourself: search the repository for it (`Ctrl+Shift+F` or `Cmd+Shift+F`). It should appear only in the spec.
+1. Pick one ID from the list and verify it yourself: search the repository for it with `Ctrl+Shift+F` (`Cmd+Shift+F` on Mac). It should appear only in the spec.
 
 1. Open `openspec/changes/add-inbound-document-triage/design.md` and read the first decision. It lists what the first slice receives as input instead of doing itself. Each of those is a capability someone must confirm exists.
 
@@ -74,6 +74,6 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 
 - **You already opened a pull request from `trace-triage`:** Use it. Push a new commit to it, and Mona checks the pull request again.
 
-- **Mona did not respond:** Check that the pull request targets `main`. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
+- **Mona did not respond:** Check that the pull request targets `main`. If you changed the base branch of a pull request you had already opened, Mona doesn't notice: select **Close pull request**, then **Reopen pull request**, or push a new commit to `trace-triage`. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
 
 </details>

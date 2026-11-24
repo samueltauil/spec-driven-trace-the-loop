@@ -3,7 +3,7 @@ name: Step 2
 on:
   # Manual re-run for facilitators and testing.
   workflow_dispatch:
-  # The learner pushes the worksheet to a branch that does not exist in the template.
+  # The learner pushes the updated worksheet to the same branch; only the enabled step workflow runs.
   push:
     branches:
       - trace-triage

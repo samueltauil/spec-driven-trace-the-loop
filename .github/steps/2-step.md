@@ -48,7 +48,7 @@ Each row of your worksheet answers one question:
 
 - **The spec and the feature point to different requirements:** That's a real finding, not your mistake. Write both IDs in the **Requirement** row and say which is which. Don't change the tag.
 
-- **Mona says the "not proven" row is missing something:** Put the spec's `THEN` line next to the Gherkin `Then` step. Which part of the spec's line has no matching check?
+- **Mona says the Not proven by the evidence row is missing something:** Put the spec's `THEN` line next to the Gherkin `Then` step. Which part of the spec's line has no matching check?
 
 - **Mona says the evidence row is missing:** Paste the summary line that ends in `passed` from the test output.
 

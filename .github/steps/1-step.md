@@ -8,7 +8,7 @@ Welcome to the Contoso Health Plan delivery team, @{{ login }}! :wave: Your team
 
 In spec-driven delivery, every behavior leaves a trail. An **intent brief** explains why the change matters. An [OpenSpec](https://github.com/Fission-AI/OpenSpec) **change** holds the proposal and the **requirements** (rules written with MUST or SHALL), each with acceptance **scenarios**. A [Gherkin](https://cucumber.io/docs/gherkin/reference/) **feature** file turns scenarios into examples a machine can run, and the **code** and **tests** produce the evidence. Shared IDs link the trail: `003-FR-004` is a requirement and `003-US1-AS1` is an acceptance scenario.
 
-<img width="800" alt="The spec-driven loop: five linked steps. Intent, why the change matters. Requirement, the rule written with MUST or SHALL. Scenario, an example someone can check. Feature and code, examples that run and the behavior. Evidence, what ran and what passed. Shared IDs such as 003-FR-004 for a requirement and 003-US1-AS1 for an acceptance scenario link them." src="../images/spec-loop.png">
+<img width="800" alt="The spec-driven loop: every approved behavior leaves a trail you can follow, from why to proof. Five linked steps. Intent, why the change matters. Requirement, the rule written with MUST or SHALL. Scenario, an example someone can check. Feature and code, examples that run and the behavior. Evidence, what ran and what passed. Shared IDs such as 003-FR-004 for a requirement and 003-US1-AS1 for an acceptance scenario link the trail. Footer: AI drafts. Humans decide." src="../images/spec-loop.png">
 
 | Link | Where it lives in this repository |
 | --- | --- |
@@ -33,7 +33,7 @@ Your copy of this repository comes with a ready-made [codespace](https://docs.gi
 
    <img width="400" alt="The bottom-left corner of the editor's Status Bar showing Codespaces followed by a generated codespace name" src="../images/codespaces-status.png">
 
-1. Open a terminal with `` Ctrl+` `` (`` ⌃` `` on Mac), or from the menu (☰) at the top left with **Terminal** > **New Terminal**. Then create a branch for your work.
+1. Open a terminal with `` Ctrl+` `` (also on Mac), or from the menu (☰) at the top left with **Terminal** > **New Terminal**. Then create a branch for your work.
 
    > ![Terminal command](https://img.shields.io/badge/Terminal-text?style=flat&logo=gnometerminal&labelColor=1f2328&color=eee)
    >
@@ -46,7 +46,7 @@ Your copy of this repository comes with a ready-made [codespace](https://docs.gi
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- **No terminal is visible:** In the panel at the bottom of the editor, select the **TERMINAL** tab. If there is no panel, press `` Ctrl+` `` (`` ⌃` `` on Mac).
+- **No terminal is visible:** In the panel at the bottom of the editor, select the **TERMINAL** tab. If there is no panel, press `` Ctrl+` `` (also on Mac).
 
   <img width="460" alt="The editor's bottom panel with the TERMINAL tab selected, next to PROBLEMS, OUTPUT, DEBUG CONSOLE and PORTS" src="../images/terminal-tab.png">
 

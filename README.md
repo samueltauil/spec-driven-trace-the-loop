@@ -18,7 +18,7 @@ _Follow one business rule from intent to passing evidence, and find out what gre
 In this exercise, you will:
 
 1. Follow a worked trace for a confidence-routing rule, from intent to a passing scenario.
-1. Trace a weekend deadline rule on your own and name what its test does not prove.
+1. Trace a weekend appeal rule on your own and name what its test does not prove.
 1. Record a scenario with no automated evidence and an unconfirmed capability, then open a pull request.
 
 This is exercise 1 of 4 in the **Spec-Driven Delivery with OpenSpec, Gherkin and GitHub Copilot** workshop. All organizations, people and data in it are fictional.

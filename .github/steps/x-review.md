@@ -45,6 +45,6 @@ Pick one acceptance criterion in your team's backlog. Name the automated check t
 
 <img width="800" alt="Workshop map, Spec-driven delivery workshop: four exercises, one delivery loop. 1, Trace the loop: intent to evidence. 2, Find the missing rules: before you build. 3, Deliver a behavior: test-first, with Copilot. 4, Draft your first spec: capstone. Exercise 1 is highlighted: You are here." src="../images/workshop-map.png">
 
-- Continue the workshop with exercise 2, **Find the Missing Rules Before You Build**, where you catch missing rules before anyone writes code.
+- Continue the workshop with exercise 2, [Find the Missing Rules Before You Build](https://github.com/samueltauil/spec-driven-find-missing-rules), where you catch missing rules before anyone writes code.
 - Read the [Gherkin reference](https://cucumber.io/docs/gherkin/reference/) to learn how scenarios, outlines and tags work.
 - Explore more [GitHub Skills exercises](https://learn.github.com/skills).
