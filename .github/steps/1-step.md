@@ -91,7 +91,7 @@ You'll follow scenario `003-US1-AS1`, the rule that decides whether a document i
 
 ### ⌨️ Activity 3: Record the trace and push it
 
-1. Open `trace/document-triage.md`. Replace the whole **Trace 1** table with this one:
+1. Open `trace/document-triage.md`. Replace the whole **Trace 1** table with this one, and keep the `## Trace 1` heading above it:
 
    ```markdown
    | Link | What you found |
@@ -126,7 +126,7 @@ You'll follow scenario `003-US1-AS1`, the rule that decides whether a document i
 
 - **`git commit` says `nothing to commit`:** Save the worksheet with `Ctrl+S` (`Cmd+S` on Mac), then run the three commands again.
 
-- **Mona did not respond:** Check that you pushed to the `trace-triage` branch and that `trace/document-triage.md` changed. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
+- **Mona did not respond:** Check that `git push` finished without an error, and run `git branch --show-current`. If the branch isn't `trace-triage`, run `git switch -c trace-triage`, then `git push -u origin trace-triage`. You can watch the run in the [Actions tab](https://github.com/{{ full_repo_name }}/actions).
 
 - **Mona reported a failed check:** Fix the worksheet, then commit and push again. Mona checks every push to `trace-triage`.
 

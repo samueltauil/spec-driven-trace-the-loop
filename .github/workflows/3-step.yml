@@ -121,11 +121,11 @@ jobs:
             results_table:
               - description: "The Gaps section names a spec scenario ID with no automated evidence"
                 passed: ${{ steps.check-gap.outcome == 'success' }}
-              - description: "The Gaps section records an unconfirmed capability"
+              - description: "The Unconfirmed capability line describes a capability in a short sentence"
                 passed: ${{ steps.check-capability.outcome == 'success' }}
               - description: "The Gaps section names a role who could confirm the capability"
                 passed: ${{ steps.check-confirmer.outcome == 'success' }}
-            tips: ${{ contains(steps.*.outcome, 'failure') && '["Copy a scenario ID exactly as it appears after #### Scenario: in the spec, and check that it does not appear in the feature file or a unit test name.", "Write each answer on the same line as its label in the Gaps section.", "Commit and push to trace-triage again. Mona checks the pull request on every push."]' || '[]' }}
+            tips: ${{ contains(steps.*.outcome, 'failure') && '["Copy a scenario ID exactly as it appears after `#### Scenario:` in the spec, and check that it does not appear in the feature file or a unit test name.", "Write each answer on the same line as its label in the Gaps section.", "Describe the capability in a short sentence, not a single word, and name a role after Who could confirm it.", "Commit and push to trace-triage again. Mona checks the pull request on every push."]' || '[]' }}
 
       # END: Check practical exercise
 
