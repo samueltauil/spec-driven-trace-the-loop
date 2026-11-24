@@ -1,6 +1,6 @@
 ## Step 1: Follow one behavior from intent to evidence
 
-<img width="800" alt="Exercise 1 of the Spec-Driven Delivery workshop: Trace the Loop. Follow one business rule from intent to evidence. The loop runs from Intent to Requirement, Scenario, Code and Evidence." src="../images/banner.png">
+<img width="800" alt="Exercise 1 of 4 of the Spec-Driven Delivery workshop: Trace the Loop: From Intent to Evidence. Follow one rule from intent to passing evidence, and find what green tests do not prove. Tools: Codespaces, GitHub Copilot, OpenSpec and Gherkin. Focus of this exercise: Intent, Requirement, Scenario, Code and Evidence." src="../images/banner.png">
 
 Welcome to the Contoso Health Plan delivery team, @{{ login }}! :wave: Your team is building inbound document triage: faxes and scans must reach the right queue fast, attach to a member only when certain, and go to people whenever the system is unsure. Before the next planning session, your lead asks you to show how one business rule travels from intent to evidence.
 
@@ -25,7 +25,7 @@ Your copy of this repository comes with a ready-made [codespace](https://docs.gi
 
    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{ full_repo_name }}?quickstart=1)
 
-1. On the codespace page, check that the repository is `{{ full_repo_name }}`, your copy, and not the original exercise. Then create the codespace.
+1. On the codespace page, check that the repository is `{{ full_repo_name }}`, your copy, and not the original exercise. Then select **Create new codespace**. If you already have a codespace for this repository, the page offers **Resume this codespace** instead; that works too.
 
 1. Wait for the editor to open. The first start takes about 2 to 4 minutes, because the codespace installs everything this exercise needs before it opens.
 

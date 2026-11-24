@@ -4,9 +4,9 @@ Great catch, @{{ login }}! You found a promise the evidence does not keep. One q
 
 ### 📖 Theory: Gaps and unconfirmed capabilities
 
-A spec can keep acceptance scenarios that no automated check covers yet, and every spec rests on **capabilities** it assumes exist: a field, a lookup, an interface or a queue. [Copilot Chat](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide) is good at comparing files to find candidate gaps, but it can be wrong, and only a named person can confirm that a capability exists. Until someone does, the capability blocks the **Ready to build** decision. The rule for the whole workshop: AI drafts, humans decide.
+A spec can keep acceptance scenarios that no automated check covers yet, and every spec rests on **capabilities** it assumes exist: a field, a lookup, an interface or a queue. [Copilot Chat](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide) is good at comparing files to find candidate gaps, but it can be wrong, and only a named owner, such as the engineering lead for that system, can confirm that a capability exists. Until someone does, the capability blocks the **Ready to build** decision. The rule for the whole workshop: AI drafts, humans decide.
 
-<img width="800" alt="Where gaps hide. Five spec scenarios, A to E. Four link to a passing feature scenario or unit test. Scenario D has no automated evidence and is marked as a gap. Below, a note on assumed capabilities: every spec relies on things it expects to exist, such as a field, a lookup, an interface or a queue, and a named person confirms each one before Ready to build." src="../images/evidence-gap.png">
+<img width="800" alt="Where gaps hide. Five spec scenarios, A to E. Four link to a passing feature scenario or unit test. Scenario D has no automated evidence and is marked as a gap. Below, a note on assumed capabilities: every spec relies on things it expects to exist, such as a field, a lookup, an interface or a queue, and a named owner confirms each one before Ready to build." src="../images/evidence-gap.png">
 
 ### ⌨️ Activity 1: Find a gap with Copilot
 
@@ -39,7 +39,9 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- **Copilot listed `003-US2-AS2`:** Check it yourself. The unit test named `003-US2-AS1/2/3` covers AS1, AS2 and AS3, so Copilot missed it. Verifying output like this is exactly your job.
+- **Your search finds a listed ID in the feature file or a unit test:** Copilot can be wrong. Drop that ID and pick one your search finds only in the spec. Checking AI output like this is part of the job.
+
+- **Copilot stops answering or says you've reached a limit:** The prompt only saves time. Compare the `#### Scenario:` IDs in the spec with the tags in `features/document-triage.feature` and the unit test names yourself.
 
 - **Copilot edited a file:** Undo it with `git restore <file>`, then ask again.
 

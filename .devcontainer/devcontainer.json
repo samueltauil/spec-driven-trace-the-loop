@@ -10,13 +10,20 @@
   "updateContentCommand": "npm ci",
   "customizations": {
     "codespaces": {
-      "openFiles": ["trace/document-triage.md"]
+      "openFiles": [
+        "trace/document-triage.md"
+      ]
     },
     "vscode": {
       "extensions": [
         "GitHub.copilot-chat",
         "CucumberOpen.cucumber-official"
-      ]
+      ],
+      "settings": {
+        "search.exclude": {
+          ".github/**": true
+        }
+      }
     }
   }
 }

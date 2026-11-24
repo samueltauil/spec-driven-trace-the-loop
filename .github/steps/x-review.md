@@ -33,7 +33,7 @@ Record the mismatch and ask the people who own the spec and the scenario to reso
 <details>
 <summary>Copilot says a capability exists. Is that enough for Ready to build?</summary><br/>
 
-No. Copilot can find candidates, but only a named person who owns the system can confirm the capability. Until then it blocks the Ready to build decision.
+No. Copilot can find candidates, but only the system's owner, named by role, can confirm the capability. Until then it blocks the Ready to build decision.
 
 </details>
 
@@ -43,7 +43,7 @@ Pick one acceptance criterion in your team's backlog. Name the automated check t
 
 ### What's next?
 
-<img width="800" alt="Workshop map: four exercises in a row. Exercise 1, Trace the loop, is highlighted as You are here. Next come Find the missing rules, Deliver a behavior and Draft your first spec." src="../images/workshop-map.png">
+<img width="800" alt="Workshop map, Spec-driven delivery workshop: four exercises, one delivery loop. 1, Trace the loop: intent to evidence. 2, Find the missing rules: before you build. 3, Deliver a behavior: test-first, with Copilot. 4, Draft your first spec: capstone. Exercise 1 is highlighted: You are here." src="../images/workshop-map.png">
 
 - Continue the workshop with exercise 2, **Find the Missing Rules Before You Build**, where you catch missing rules before anyone writes code.
 - Read the [Gherkin reference](https://cucumber.io/docs/gherkin/reference/) to learn how scenarios, outlines and tags work.

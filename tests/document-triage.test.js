@@ -14,7 +14,7 @@ test('003-US1-AS1: threshold is inclusive and lower confidence goes to a person'
   assert.equal(triageDocument({ ...sample, type: 'other', confidence: 1 }).queue, 'human-review');
 });
 
-test('003-US2-AS1/2/3: matching needs corroboration and conflicts override exact matches', () => {
+test('003-US2-AS1, 003-US2-AS2, 003-US2-AS3: matching needs corroboration and conflicts override exact matches', () => {
   assert.equal(triageDocument(sample).attachment, 'attached');
   assert.equal(triageDocument({ ...sample, claimNumberMatches: false }).attachment, 'review');
   assert.equal(triageDocument({ ...sample, memberIdMatches: false }).attachment, 'review');

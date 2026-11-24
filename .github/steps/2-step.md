@@ -41,7 +41,7 @@ Each row of your worksheet answers one question:
 
 1. Save, commit with your own message, and push to `trace-triage` as you did in step 1.
 
-1. Wait a moment for Mona to check your work, provide feedback, and share the next lesson.
+1. Go back to this issue in your browser. Wait a moment for Mona to check your work, provide feedback, and share the next lesson.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
