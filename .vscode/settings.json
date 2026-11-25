@@ -1,0 +1,15 @@
+{
+  "search.exclude": {
+    ".github/**": true
+  },
+  "files.eol": "\n",
+  "terminal.integrated.env.linux": {
+    "OPENSPEC_TELEMETRY": "0"
+  },
+  "terminal.integrated.env.osx": {
+    "OPENSPEC_TELEMETRY": "0"
+  },
+  "terminal.integrated.env.windows": {
+    "OPENSPEC_TELEMETRY": "0"
+  }
+}

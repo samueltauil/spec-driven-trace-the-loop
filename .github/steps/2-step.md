@@ -21,7 +21,7 @@ Each row of your worksheet answers one question:
 
    </details>
 
-1. In your codespace, search the whole repository for `003-US4-AS3` with `Ctrl+Shift+F` (`Cmd+Shift+F` on Mac). It appears in the spec, the feature file and a unit test.
+1. In your editor, search the whole repository for `003-US4-AS3` with `Ctrl+Shift+F` (`Cmd+Shift+F` on Mac). It appears in the spec, the feature file and a unit test.
 
 1. In the spec, note which `### Requirement:` heading the scenario sits under, and read its `THEN` line word by word.
 

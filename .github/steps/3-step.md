@@ -10,7 +10,7 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 
 ### ⌨️ Activity 1: Find a gap with Copilot
 
-1. In your codespace, open Copilot Chat: select the chat icon at the top of the editor, or press `Ctrl+Alt+I` (`Ctrl+Cmd+I` on Mac).
+1. In your editor, open Copilot Chat: select the chat icon at the top of the editor, or press `Ctrl+Alt+I` (`Ctrl+Cmd+I` on Mac).
 
 1. Ask Copilot to compare the spec with the evidence. The first sentence keeps it read-only.
 
@@ -47,7 +47,7 @@ A spec can keep acceptance scenarios that no automated check covers yet, and eve
 
 - **Copilot edited a file:** Undo it with `git restore <file>`, then ask again.
 
-- **No chat icon, or Copilot asks you to sign in:** Select the Copilot icon in the Status Bar at the bottom of the editor and sign in with your GitHub account. The GitHub Copilot Chat extension is already installed in this codespace.
+- **No chat icon, or Copilot asks you to sign in:** Select the Copilot icon in the Status Bar at the bottom of the editor and sign in with your GitHub account. Copilot is already set up in the codespace, and built into VS Code 1.116 or later.
 
 </details>
 
